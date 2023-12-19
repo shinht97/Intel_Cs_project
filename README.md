@@ -1,3 +1,3 @@
 # Intel_Cs_project
 
-git upload 용 C# repository
+git 업로드 용 C# repository
