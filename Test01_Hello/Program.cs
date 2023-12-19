@@ -11,7 +11,7 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
-using static System.Console; // static class, 메모리에 상주해야 입출력이 가능
+using static System.Console; // static class, 메모리에 상주하여야 입출력이 가능
 
 namespace Test01_Hello // 범위 지정 keyword
 {
@@ -22,9 +22,9 @@ namespace Test01_Hello // 범위 지정 keyword
         // public : 접근 지시자는 매번 붙혀줘야함
 
         public static string GetToken(string _str, int _n, char _sep) 
+        // (str) : "1 2 3" "1,2,3" , (n)번째, (seperator) : ',' ' '
+        // class가 static으로 선언 되었기 때문에 멤버 함수 또한 static으로 선언하여야 사용 가능
         {
-            // (str) : "1 2 3" "1,2,3" , (n)번째, (seperator) : ',' ' '
-
             return _str.Split(_sep)[_n];
         }
     }
@@ -35,7 +35,7 @@ namespace Test01_Hello // 범위 지정 keyword
     {
         double x, y;
 
-        public Point(double x = 0, double y = 0) // defalut 값을 설정하여, null 생성자로도 가능하게 만들어줌
+        public Point(double x = 0, double y = 0) // defalut 값을 설정하여, 기본 생성자로도 가능하게 만들어줌
         {
             this.x = x;
             this.y = y;
@@ -50,7 +50,7 @@ namespace Test01_Hello // 범위 지정 keyword
         }
 
         public static double operator -(Point _p1, Point _p2) // 연산자 오버로딩
-                                                              // 연산자의 역할을 바꿀 수 있음
+                                                              // 연산자의 기능을 바꿀 수 있음
         {
             double d1 = _p1.x - _p2.x;
             double d2 = _p1.y - _p2.y;
@@ -70,7 +70,8 @@ namespace Test01_Hello // 범위 지정 keyword
 
     internal class Program
     {
-        static void Main(string[] args) // class Program의 멤버 함수이긴하나 독립되어 완성된 객체로 취급
+        static void Main(string[] args) // class Program의 멤버 함수이긴하나
+                                        // static 선언을 통해 독립된 객체로 사용
         {
             Test01 sub = new Test01(); // Main안에서는 실제로 동작하는 class를
                                        // 객체로 생성하는 것만으로 기능 끝!
@@ -79,7 +80,7 @@ namespace Test01_Hello // 범위 지정 keyword
         }
     }
 
-    class Test01 // main working class
+    class Test01 // real working class
     {
         // 프로그램의 실제 동작을 working class안에서 작성
 
@@ -92,7 +93,7 @@ namespace Test01_Hello // 범위 지정 keyword
 
         public void mainFunc() // 멤버 함수
         {
-            int i = 10, j = 20;
+            int i = 10, j = 20; // datatype 조차 객체
             double d = 1.5, e = 3.1;
 
 #if CONSOLE
@@ -104,11 +105,12 @@ namespace Test01_Hello // 범위 지정 keyword
 #endif
 
 #if STATIC
-            // myLib my = new myLib(); // static 선언을 하면 객체를 생성할 필요가 없음
+            // myLib my = new myLib(); // static 선언을 하면 객체로 생성할 필요가 없음
 
             string str = ReadLine();
 
-            i = int.Parse(myLib.GetToken(str, 0, ' ')); // 클래스 이름을 사용하여 바로 접근 가능
+            i = int.Parse(myLib.GetToken(str, 0, ' ')); // 클래스 이름을 사용하여 바로 접근 가능 
+                                                        // => static이기 때문에 가능
 #endif
 
 #if POINT
@@ -118,17 +120,18 @@ namespace Test01_Hello // 범위 지정 keyword
             WriteLine($"두 점 p1(10, 20)과 p2(30, 40)의 거리는 " +
                 $"(Dist : {p1.Dist(p2):##.###}) [- : {p1 - p2:##.###}]");
 
-            WriteLine($"두 점 p1(10, 20)과 p2(30, 40)이루는 사각형의 넓이는 {p1 * p2}");
+            WriteLine($"두 점 p1(10, 20)과 p2(30, 40)이루는 사각형의 넓이는 {p1 * p2}"); // 함수 오버로딩
 
             //string s1 = "Good";
             //string s2 = " Morning";
-            //string s3 = s1 + s2;
+            //string s3 = s1 + s2; // + 연산자의 오버로딩
 
             //WriteLine(s3);
 #endif
-            int[] arr = new int[i]; // new를 통해 객체를 생성하기 때문에 i(변수)를 통해 배열을 생성할 수 있음
+
+            int[] arr = new int[i]; // new를 통해 객체를 생성하기 때문에 i(변수)를 통해 가변 배열을 생성할 수 있음
             
-            for(j = 0; j < i; j++)
+            for(j = 0; j < i; j++) // 배열 초기화
             {
                 arr[j] = j;
             }
@@ -196,12 +199,12 @@ namespace Test01_Hello // 범위 지정 keyword
 
             WriteLine($"Object : {o}, {o.GetType()}"); // object는 실제로 존재하는 객체
 
-            o = d + 0.5;
+            o = d + 0.5; // datatype의 최상위이기 때문에 어떠한
+                         // 자료형이든 대입 할수 있음
 
-            WriteLine($"Object : {o}, {o.GetType()}"); // datatype의 최상위이기 때문에 어떠한
-                                                       // 자료형이든 대입 할수 있음
+            WriteLine($"Object : {o}, {o.GetType()}"); 
 
-            var v = i * 10; // datatype이 고정이나, 작성 당시에만 결정되지 않은 형
+            var v = i * 10; // datatype이 고정이나, 작성 당시에만 결정되지 않은 keyword
 
             WriteLine($"Var : {v}, {v.GetType()}");
 
@@ -210,7 +213,7 @@ namespace Test01_Hello // 범위 지정 keyword
 
             WriteLine($"i : {i}, j : {j}, d : {d}, e : {e}, o : {o}");
             WriteLine($"i : {sizeof(int)}, j : {sizeof(int)}, d : {sizeof(double)}, e : {sizeof(double)}");
-            // object는 여러 데이터 형을 대입 할 수 있기 때문에 크기를 출력할 수 없다
+            // object는 여러 데이터 형이든 대입 할 수 있기 때문에 크기를 출력할 수 없다.
             // sizeof()는 변수가 아니라 데이터 형으로 구할 수 있다
         }
 #endif
