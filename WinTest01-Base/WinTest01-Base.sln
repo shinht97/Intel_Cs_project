@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinTest02-Memo", "..\WinTes
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinTest03-COM", "..\WinTest03-COM\WinTest03-COM.csproj", "{38C81CF7-0C49-4674-9FCE-3BC303E8A350}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinTest04-DBManager", "..\WinTest04-DBManager\WinTest04-DBManager.csproj", "{43EEA364-34FA-4911-9644-97764D110290}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,14 @@ Global
 		{38C81CF7-0C49-4674-9FCE-3BC303E8A350}.Release|Any CPU.Build.0 = Release|Any CPU
 		{38C81CF7-0C49-4674-9FCE-3BC303E8A350}.Release|x64.ActiveCfg = Release|Any CPU
 		{38C81CF7-0C49-4674-9FCE-3BC303E8A350}.Release|x64.Build.0 = Release|Any CPU
+		{43EEA364-34FA-4911-9644-97764D110290}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43EEA364-34FA-4911-9644-97764D110290}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43EEA364-34FA-4911-9644-97764D110290}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{43EEA364-34FA-4911-9644-97764D110290}.Debug|x64.Build.0 = Debug|Any CPU
+		{43EEA364-34FA-4911-9644-97764D110290}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43EEA364-34FA-4911-9644-97764D110290}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43EEA364-34FA-4911-9644-97764D110290}.Release|x64.ActiveCfg = Release|Any CPU
+		{43EEA364-34FA-4911-9644-97764D110290}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
